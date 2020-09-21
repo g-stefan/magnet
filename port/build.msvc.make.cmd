@@ -18,4 +18,4 @@ echo "Error: %ACTION%"
 exit 1
 :StepX
 
-call :cmdX xyo-cc --mode=%ACTION% @source/magnet.compile.info --use-lib=crypt32
+call :cmdX xyo-cc --mode=%ACTION% @source/magnet.compile --use-lib=crypt32

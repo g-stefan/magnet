@@ -12,4 +12,4 @@ cmdX(){
 	fi
 }
 
-cmdX magnet --execution-time test/test.0001.js
+cmdX bin/magnet --execution-time test/test.0001.js

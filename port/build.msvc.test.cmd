@@ -15,4 +15,4 @@ echo "Error: test"
 exit 1
 :StepX
 
-call :cmdX magnet --execution-time test/test.0001.js
+call :cmdX bin\magnet --execution-time test/test.0001.js

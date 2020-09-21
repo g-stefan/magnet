@@ -13,37 +13,8 @@
 
 #include "xyo-pixel32.hpp"
 #include "quantum-script.hpp"
-#include "quantum-script-extension-application.hpp"
-#include "quantum-script-extension-buffer.hpp"
-#include "quantum-script-extension-base16.hpp"
-#include "quantum-script-extension-base32.hpp"
-#include "quantum-script-extension-base64.hpp"
-#include "quantum-script-extension-console.hpp"
-#include "quantum-script-extension-crypt.hpp"
-#include "quantum-script-extension-csv.hpp"
-#include "quantum-script-extension-datetime.hpp"
-#include "quantum-script-extension-file.hpp"
-#include "quantum-script-extension-http.hpp"
-#include "quantum-script-extension-job.hpp"
-#include "quantum-script-extension-json.hpp"
-#include "quantum-script-extension-make.hpp"
-#include "quantum-script-extension-math.hpp"
-#include "quantum-script-extension-md5.hpp"
-#include "quantum-script-extension-processinteractive.hpp"
-#include "quantum-script-extension-random.hpp"
-#include "quantum-script-extension-sha256.hpp"
-#include "quantum-script-extension-sha512.hpp"
-#include "quantum-script-extension-shell.hpp"
-#include "quantum-script-extension-shellfind.hpp"
-#include "quantum-script-extension-socket.hpp"
-#include "quantum-script-extension-task.hpp"
-#include "quantum-script-extension-thread.hpp"
-#include "quantum-script-extension-url.hpp"
-#include "quantum-script-extension-version.hpp"
-#include "quantum-script-extension-xml.hpp"
 #include "quantum-script-extension-openssl.hpp"
-#include "quantum-script-extension-pixel32.hpp"
-#include "quantum-script-extension-sshremote.hpp"
+#include "quantum-script-extension-magnet.hpp"
 
 #include "magnet-license.hpp"
 #include "magnet-copyright.hpp"
@@ -72,39 +43,8 @@ namespace Main {
 	};
 
 	void Application::initExecutive(Executive *executive) {
-		Extension::Application::registerInternalExtension(executive);
-		Extension::Base16::registerInternalExtension(executive);
-		Extension::Base32::registerInternalExtension(executive);
-		Extension::Base64::registerInternalExtension(executive);
-		Extension::Buffer::registerInternalExtension(executive);
-		Extension::Console::registerInternalExtension(executive);
-		Extension::Crypt::registerInternalExtension(executive);
-		Extension::CSV::registerInternalExtension(executive);
-		Extension::DateTime::registerInternalExtension(executive);
-		Extension::File::registerInternalExtension(executive);
-		Extension::HTTP::registerInternalExtension(executive);
-		Extension::Job::registerInternalExtension(executive);
-		Extension::JSON::registerInternalExtension(executive);
-		Extension::Make::registerInternalExtension(executive);
-		Extension::Math::registerInternalExtension(executive);
-		Extension::MD5::registerInternalExtension(executive);
-		Extension::OpenSSL::registerInternalExtension(executive);
-		Extension::Pixel32::registerInternalExtension(executive);
-		Extension::ProcessInteractive::registerInternalExtension(executive);
-		Extension::Random::registerInternalExtension(executive);
-		Extension::SHA256::registerInternalExtension(executive);
-		Extension::SHA512::registerInternalExtension(executive);
-		Extension::Shell::registerInternalExtension(executive);
-		Extension::ShellFind::registerInternalExtension(executive);
-		Extension::Socket::registerInternalExtension(executive);
-		Extension::SSHRemote::registerInternalExtension(executive);
-		Extension::Task::registerInternalExtension(executive);
-		Extension::Thread::registerInternalExtension(executive);
-		Extension::URL::registerInternalExtension(executive);
-		Extension::Version::registerInternalExtension(executive);
-		Extension::XML::registerInternalExtension(executive);
-		//
-		executive->compileString("Script.requireExtension=Script.requireInternalExtension;");
+		Extension::Magnet::registerInternalExtension(executive);
+		executive->compileString("Script.requireInternalExtension(\"Magnet\");");
 	};
 
 	void Application::showUsage() {
