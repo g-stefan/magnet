@@ -4,8 +4,7 @@
         {
             "name": "Win32",
             "intelliSenseMode": "msvc-x64",
-            "includePath": [
-                "${workspaceRoot}/include",
+            "includePath": [                
                 "${workspaceRoot}/source",
                 "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/ATLMFC/include",
                 "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/include",
@@ -23,8 +22,7 @@
                 "XYO_PLATFORM=\"win64-msvc-2019\""
             ],
             "browse": {
-                "path": [
-                    "${workspaceRoot}/include",
+                "path": [                    
                     "${workspaceRoot}/source",
                     "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/ATLMFC/include",
                     "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/include",
@@ -44,8 +42,7 @@
         {
             "name": "linux",
             "intelliSenseMode": "gcc-x64",
-            "includePath": [
-                "${workspaceRoot}/include",
+            "includePath": [                
                 "${workspaceRoot}/source"
             ],
             "defines": [
@@ -56,8 +53,7 @@
                 "XYO_PLATFORM=\"ubuntu-focal\""
             ],
             "browse": {
-                "path": [
-                    "${workspaceRoot}/include",
+                "path": [                    
                     "${workspaceRoot}/source"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
