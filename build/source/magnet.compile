@@ -1,3 +1,3 @@
 --exe magnet
---use-path=source
 --use-project=qse-magnet.static
+--output-bin-path-is-output

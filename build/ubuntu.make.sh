@@ -17,4 +17,4 @@ cmdX(){
 	fi
 }
 
-cmdX xyo-cc --mode=$ACTION @source/magnet.compile
+cmdX xyo-cc --mode=$ACTION @build/source/magnet.compile

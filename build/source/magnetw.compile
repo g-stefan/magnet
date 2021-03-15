@@ -1,6 +1,6 @@
 --exe magnetw
 --project-base=magnet
---use-path=source
 --use-project=qse-magnet.static
 --def=BUILD_WINDOWS_GUI
 --for-platform=win*
+--output-bin-path-is-output

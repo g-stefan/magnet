@@ -3,14 +3,13 @@
 # http://unlicense.org/
 # Created by Grigore Stefan <g_stefan@yahoo.com>
 
-echo "-> analyze magnet"
+echo "-> magnet"
 
 cmdX(){
-	echo "-> $@"
 	if ! "$@" ; then
-		echo "Error: $@"
+		echo "Error: test"
 		exit 1
 	fi
 }
 
-cmdX scan-build ./port/build.ubuntu.make.sh
+cmdX output/magnet --execution-time test/test.0001.js
