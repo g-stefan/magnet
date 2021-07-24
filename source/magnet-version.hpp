@@ -10,10 +10,10 @@
 #ifndef MAGNET_VERSION_HPP
 #define MAGNET_VERSION_HPP
 
-#define MAGNET_VERSION_ABCD                1,5,0,10
-#define MAGNET_VERSION_STR                 "1.5.0"
-#define MAGNET_VERSION_STR_BUILD           "10"
-#define MAGNET_VERSION_STR_DATETIME        "2021-07-06 15:11:50"
+#define MAGNET_VERSION_ABCD                2,0,0,14
+#define MAGNET_VERSION_STR                 "2.0.0"
+#define MAGNET_VERSION_STR_BUILD           "14"
+#define MAGNET_VERSION_STR_DATETIME        "2021-07-23 16:34:04"
 
 #ifndef XYO_RC
 
