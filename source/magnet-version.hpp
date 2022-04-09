@@ -10,10 +10,10 @@
 #ifndef MAGNET_VERSION_HPP
 #define MAGNET_VERSION_HPP
 
-#define MAGNET_VERSION_ABCD                2,18,0,48
-#define MAGNET_VERSION_STR                 "2.18.0"
-#define MAGNET_VERSION_STR_BUILD           "48"
-#define MAGNET_VERSION_STR_DATETIME        "2022-01-09 01:13:15"
+#define MAGNET_VERSION_ABCD 2,23,0,52
+#define MAGNET_VERSION_STR "2.23.0"
+#define MAGNET_VERSION_STR_BUILD "52"
+#define MAGNET_VERSION_STR_DATETIME "2022-04-04 01:44:59"
 
 #ifndef XYO_RC
 
@@ -28,4 +28,3 @@ namespace Magnet {
 
 #endif
 #endif
-

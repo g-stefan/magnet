@@ -12,10 +12,10 @@
 namespace Magnet {
 	namespace Version {
 
-		static const char *version_ = "2.18.0";
-		static const char *build_ = "48";
-		static const char *versionWithBuild_ = "2.18.0.48";
-		static const char *datetime_ = "2022-01-09 01:13:15";
+		static const char *version_ = "2.23.0";
+		static const char *build_ = "52";
+		static const char *versionWithBuild_ = "2.23.0.52";
+		static const char *datetime_ = "2022-04-04 01:44:59";
 
 		const char *version() {
 			return version_;
@@ -32,5 +32,3 @@ namespace Magnet {
 
 	};
 };
-
-
