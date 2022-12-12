@@ -5,7 +5,6 @@
 		"make" : "exe.static",
 		"SPDX-License-Identifier": "MIT",
 		"sourcePath" : "XYO/Magnet",
-		"outputPath" : "output",
 		"dependency" : [
 			"quantum-script--magnet"
 		]
