@@ -1,14 +1,18 @@
 {
-	"project": {
-		"name":"magnet",
-		"type":"xyo-cpp",
-		"make" : "exe.static",
-		"SPDX-License-Identifier": "MIT",
-		"sourcePath" : "XYO/Magnet",
-		"dependency" : [
-			"quantum-script--magnet"			
+	"solution": {
+		"name" : "magnet",
+		"type" : "xyo-cpp",
+		"projects": [
+			{
+				"name" : "magnet",
+				"make" : "exe.static",
+				"SPDX-License-Identifier": "MIT",
+				"sourcePath" : "XYO/Magnet",
+				"dependency" : [
+					"quantum-script--magnet"			
+				]
+			}
 		],
-		"hasRelease" : true,
-		"githubRelease" : true
+		"hasGithub" : true
 	}
 }
