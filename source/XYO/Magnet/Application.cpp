@@ -17,7 +17,7 @@ namespace XYO::Magnet {
 	void Application::showUsage() {
 		printf("Magnet\n");
 		printf("version %s build %s [%s]\n", Magnet::Version::version(), Magnet::Version::build(), Magnet::Version::datetime());
-		printf("%s\n\n", Magnet::Copyright::copyright());
+		printf("%s\n\n", Magnet::Copyright::copyright().c_str());
 
 		printf("%s",
 		       "options:\n"
@@ -31,7 +31,7 @@ namespace XYO::Magnet {
 	};
 
 	void Application::showLicense() {
-		printf("%s", Magnet::License::license());
+		printf("%s", Magnet::License::license().c_str());
 	};
 
 	void Application::showVersion() {
