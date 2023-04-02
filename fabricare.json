@@ -9,7 +9,7 @@
 				"SPDX-License-Identifier": "MIT",
 				"sourcePath" : "XYO/Magnet",
 				"dependency" : [
-					"quantum-script--magnet"			
+					"quantum-script--magnet"
 				]
 			}
 		],
