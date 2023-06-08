@@ -1,6 +1,6 @@
 # Magnet
 
-## Quantum Script with following extensions included (statically linked):
+## Quantum Script with following extensions included:
 
 Application\
 Base16\

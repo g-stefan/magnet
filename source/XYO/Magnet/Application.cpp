@@ -44,6 +44,7 @@ namespace XYO::Magnet {
 
 	void Application::initExecutive(Executive *executive) {
 		Extension::Magnet::registerInternalExtension(executive);
+		executive->compileString("Script.requireExtension=Script.requireInternalExtension;");
 		executive->compileString("Script.requireInternalExtension(\"Magnet\");");
 	};
 
