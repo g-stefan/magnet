@@ -5,7 +5,7 @@
 		"projects": [
 			{
 				"name" : "magnet",
-				"make" : "exe.static",
+				"make" : "exe",
 				"SPDX-License-Identifier": "MIT",
 				"sourcePath" : "XYO/Magnet",
 				"dependency" : [
