@@ -16,17 +16,27 @@ namespace XYO::Magnet {
 
 	void Application::showUsage() {
 		printf("Magnet\n");
-		printf("version %s build %s [%s]\n", Magnet::Version::version(), Magnet::Version::build(), Magnet::Version::datetime());
+		showVersion();
 		printf("%s\n\n", Magnet::Copyright::copyright());
 
 		printf("%s",
+		       "usage:\n"
+		       "    magnet [options] script.js [arguments ...]\n"
+		       "    magnet [options] --run \"code\" [arguments ...]\n"
+		       "\n"
 		       "options:\n"
+		       "    --help, --usage        show this help\n"
+		       "    --version              show version\n"
 		       "    --license              show license\n"
 		       "    --cmd script           execute script, skip first 2 lines, to be used on shell scripts\n"
 		       "    script.js              execute script\n"
 		       "    --run \"code\"           run code\n"
+		       "    --run=\"code\"           run code\n"
 		       "    --execution-time       show execution time\n"
-		       "    --execution-time-cmd   --execution-time + --cmd\n");
+		       "    --execution-time-cmd   --execution-time + --cmd\n"
+		       "\n"
+		       "options are read up to the script or the code to run,\n"
+		       "the arguments after it are left to the script\n");
 		printf("\n");
 	};
 
@@ -59,43 +69,54 @@ namespace XYO::Magnet {
 		fileIn = nullptr;
 		bool isCmd = false;
 		bool runCode = false;
+		bool isOk;
 		String code;
 
+		// Options are read up to the script (or the code to run),
+		// the arguments after it belong to the script
 		for (i = 1; i < cmdN; ++i) {
-			if (strncmp(cmdS[i], "--", 2) == 0) {
-				opt = &cmdS[i][2];
-				if (strcmp(opt, "license") == 0) {
-					showLicense();
-					if (cmdN == 2) {
-						return 0;
-					};
-				};
-				if (strcmp(opt, "execution-time") == 0) {
-					executionTime = true;
-					continue;
-				};
-				if (strcmp(opt, "cmd") == 0) {
-					isCmd = true;
-					continue;
-				};
-				if (strcmp(opt, "execution-time-cmd") == 0) {
-					executionTime = true;
-					isCmd = true;
-					continue;
-				};
-				if (strcmp(opt, "run") == 0) {
-					runCode = true;
-					++i;
-					if (i < cmdN) {
-						code = cmdS[i];
-						continue;
-					};
-					break;
-				};
+			if (strncmp(cmdS[i], "--", 2) != 0) {
+				fileIn = cmdS[i];
+				break;
+			};
+			opt = &cmdS[i][2];
+			if ((strcmp(opt, "help") == 0) || (strcmp(opt, "usage") == 0)) {
+				showUsage();
+				return 0;
+			};
+			if (strcmp(opt, "license") == 0) {
+				showLicense();
+				return 0;
+			};
+			if (strcmp(opt, "version") == 0) {
+				showVersion();
+				return 0;
+			};
+			if (strcmp(opt, "execution-time") == 0) {
+				executionTime = true;
 				continue;
 			};
-			if (!fileIn) {
-				fileIn = cmdS[i];
+			if (strcmp(opt, "cmd") == 0) {
+				isCmd = true;
+				continue;
+			};
+			if (strcmp(opt, "execution-time-cmd") == 0) {
+				executionTime = true;
+				isCmd = true;
+				continue;
+			};
+			if (strcmp(opt, "run") == 0) {
+				runCode = true;
+				++i;
+				if (i < cmdN) {
+					code = cmdS[i];
+				};
+				break;
+			};
+			if (strncmp(opt, "run=", 4) == 0) {
+				runCode = true;
+				code = &opt[4];
+				break;
 			};
 		};
 
@@ -106,7 +127,7 @@ namespace XYO::Magnet {
 			};
 		} else {
 			if (code.length() == 0) {
-				printf("Error: No code specified!");
+				printf("Error: No code specified!\n");
 				return 1;
 			};
 		};
@@ -117,45 +138,21 @@ namespace XYO::Magnet {
 
 		if (ExecutiveX::initExecutive(cmdN, cmdS, initExecutive)) {
 			if (runCode) {
-				if (ExecutiveX::executeString(code)) {
-					ExecutiveX::endProcessing();
-					if (executionTime) {
-						endTimestampInMilliseconds = DateTime::timestampInMilliseconds();
-						intervalTimestampInMilliseconds = endTimestampInMilliseconds - beginTimestampInMilliseconds;
-						printf("Execution time: " XYO_PLATFORM_FORMAT_SIZET " ms\n", (size_t)intervalTimestampInMilliseconds);
-					};
-					return 0;
-				};
+				isOk = ExecutiveX::executeString(code);
+			} else if (isCmd) {
+				isOk = ExecutiveX::executeFileSkipLines(fileIn, 2);
 			} else {
-				if (isCmd) {
-					if (ExecutiveX::executeFileSkipLines(fileIn, 2)) {
-						ExecutiveX::endProcessing();
-						if (executionTime) {
-							endTimestampInMilliseconds = DateTime::timestampInMilliseconds();
-							intervalTimestampInMilliseconds = endTimestampInMilliseconds - beginTimestampInMilliseconds;
-							printf("Execution time: " XYO_PLATFORM_FORMAT_SIZET " ms\n", (size_t)intervalTimestampInMilliseconds);
-						};
-						return 0;
-					};
-
-					fflush(stdout);
-					printf("%s\n", (ExecutiveX::getError()).value());
-					printf("%s", (ExecutiveX::getStackTrace()).value());
-					fflush(stdout);
-
-					ExecutiveX::endProcessing();
-					return 1;
+				isOk = ExecutiveX::executeFile(fileIn);
+			};
+			if (isOk) {
+				int exitCode = ExecutiveX::getExitCode();
+				ExecutiveX::endProcessing();
+				if (executionTime) {
+					endTimestampInMilliseconds = DateTime::timestampInMilliseconds();
+					intervalTimestampInMilliseconds = endTimestampInMilliseconds - beginTimestampInMilliseconds;
+					printf("Execution time: " XYO_PLATFORM_FORMAT_SIZET " ms\n", (size_t)intervalTimestampInMilliseconds);
 				};
-
-				if (ExecutiveX::executeFile(fileIn)) {
-					ExecutiveX::endProcessing();
-					if (executionTime) {
-						endTimestampInMilliseconds = DateTime::timestampInMilliseconds();
-						intervalTimestampInMilliseconds = endTimestampInMilliseconds - beginTimestampInMilliseconds;
-						printf("Execution time: " XYO_PLATFORM_FORMAT_SIZET " ms\n", (size_t)intervalTimestampInMilliseconds);
-					};
-					return 0;
-				};
+				return exitCode;
 			};
 		};
 

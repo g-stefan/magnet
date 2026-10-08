@@ -1,5 +1,6 @@
 {
 	"solution": {
+		"namespace" : "xyo",
 		"name" : "magnet",
 		"type" : "xyo-cpp",
 		"projects": [
